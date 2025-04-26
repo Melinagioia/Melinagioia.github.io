@@ -33,12 +33,31 @@ body {
     text-align: center;
     padding: 15px;
   }
-  /* Eliminar todos los bordes de la tabla */
-  #proyectos td{
-    border: none !important;
-  } 
-  #proyectos th {
-    padding: 12px;
-    vertical-align: top;
+
+  #proyectos {
+    background-image: url("imagen_proyectos_fondo.png"); /* cambiá la ruta por la imagen real */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 0;
   }
   
+  #proyectos .container {
+    background-color: rgba(255, 255, 255, 0.792); /* Blanco con transparencia */
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 920px; 
+    margin: 0 auto;  
+  }
+  
+  /*<td> están adentro de un <tr> */
+  #proyectos table tr td {
+    padding: 20px;
+    border: none;
+  }  
+  
+  #proyectos th {
+    border: none !important;
+  }
+  
+
