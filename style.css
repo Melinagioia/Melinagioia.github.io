@@ -33,3 +33,12 @@ body {
     text-align: center;
     padding: 15px;
   }
+  /* Eliminar todos los bordes de la tabla */
+  #proyectos td{
+    border: none !important;
+  } 
+  #proyectos th {
+    padding: 12px;
+    vertical-align: top;
+  }
+  
