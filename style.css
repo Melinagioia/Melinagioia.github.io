@@ -33,5 +33,13 @@ body {
     text-align: center;
     padding: 15px;
   }
-
+  #proyectos th {
+    background-color: white !important;
+    border: none !important;
+  }
+  
+  #proyectos td {
+    padding: 20px;
+    border: none;
+  }
   
