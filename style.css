@@ -33,6 +33,22 @@ body {
     text-align: center;
     padding: 15px;
   }
+
+  #proyectos {
+    background-image: url("imagen_posproyecto.png"); /* cambiá la ruta por la imagen real */
+    background-size: 20%;
+    background-position: center;
+    background-repeat: repeat;
+    padding: 60px 0;
+  }
+  
+  #proyectos .container {
+    background-color: rgba(255, 255, 255, 0.95); /* Blanco con transparencia */
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
   #proyectos th {
     background-color: white !important;
     border: none !important;
