@@ -126,10 +126,7 @@ body {
     border: none;
   }  
 
-  #proyectos th {
-    border: none !important;
-  }
-    #contacto {
+  #contacto {
     background-image: url("imagen_contacto_fondo.png"); /* cambiá la ruta por la imagen real */
     background-size: cover;
     background-position: center;
