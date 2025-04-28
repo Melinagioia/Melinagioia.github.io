@@ -60,4 +60,30 @@ body {
     border: none !important;
   }
   
+  #estudios {
+    background-image: url("imagen_sobremi_fondo.png"); /* cambiá la ruta por la imagen real */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 0;
+    text-align: justify;
+  }
+
+  #estudios .container {
+    background-color: rgba(255, 255, 255, 0.792); /* Blanco con transparencia */
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 920px; 
+    margin: 0 auto;  
+  }
+  
+  /*<td> están adentro de un <tr> */
+  #estudios table tr td {
+    padding: 20px;
+    border: none;
+  }  
+  
+  #estudios th {
+    border: none !important;
+  }
 
