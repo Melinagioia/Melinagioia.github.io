@@ -36,9 +36,9 @@ body {
 
   #proyectos {
     background-image: url("imagen_proyectos_fondo.png"); /* cambiá la ruta por la imagen real */
-    background-size: cover;
+    background-size: 26%;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     padding: 60px 0;
   }
   
