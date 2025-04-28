@@ -34,7 +34,7 @@ body {
     padding: 15px;
   }
   #inicio {
-    background-image: url("imagen_inicio_fondo.png"); /* cambiá la ruta por la imagen real */
+    background-image: url("imagen_fondo_inicio.png"); /* cambiá la ruta por la imagen real */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -83,3 +83,4 @@ body {
   }
   
 
+ 
