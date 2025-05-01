@@ -188,4 +188,53 @@ footer {
   font-weight: normal;
 }
 
+/* boton de traducir al ingles la pagina*/
+.language-dropdown {
+  position: relative;
+  width: 100%;
+  display: inline-block; /* Hacemos que el contenedor esté alineado con el contenido */
+  background-color: #ffdab9;
+  text-align: left;
+
+}
+
+.dropdown-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffdab9; 
+  color: #333;
+  cursor: pointer;
+  position: relative;
+  display: inline-block; /* Asegura que el botón se quede al lado de las opciones */
+  z-index: 2;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 0; /* Esto asegura que las opciones estén al mismo nivel que el botón */
+  z-index: 9999;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row; /* Para que las opciones se alineen en una fila */
+
   
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  background-color:  #ffdab9; /* Mantiene el color de fondo */
+  margin: 0 5px; /* Espaciado entre las opciones */
+}
+
+.dropdown-content a:hover {
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.2);
+  
+}
+
