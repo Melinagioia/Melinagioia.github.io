@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif !important ;
   margin: 0;
   scroll-behavior: smooth;
 }
@@ -31,44 +31,6 @@ section {
 }
 
 
-  footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 15px;
-  }
-  #inicio {
-    background-image: url("imagen_fondo_inicio.png"); /* cambiá la ruta por la imagen real */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 60px 0;
-  }
-  #inicio .container {
-    background-color: rgba(255, 255, 255, 0.658); /* Blanco con transparencia */
-    padding: 30px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    max-width: 920px;
-    margin: 0 auto; 
-  }
-   #sobre-mi {
-    background-image: url("imagen_sobremi_fondo.png"); /* cambiá la ruta por la imagen real */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 60px 0;
-    text-align: justify;
-
-  }
-
-  #sobre-mi .container {
-    background-color: rgba(255, 255, 255, 0.95);
-    background-color: rgba(255, 255, 255, 0.655); /* Blanco con transparencia */
-    padding: 30px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    max-width: 920px;
-    margin: 0 auto;    
-}
 footer {
   background-color: #333;
   color: white;
@@ -83,13 +45,29 @@ footer {
   padding: 60px 0;
 }
 #inicio .container {
-  background-color: rgba(255, 255, 255, 0.658); /* Blanco con transparencia */
+  animation: fondoAnimado 5s infinite alternate;
+  background: #ffdab9; /* Color inicial animado */
   padding: 30px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   max-width: 920px;
   margin: 0 auto;
+
 }
- #sobre-mi {
+
+/* Animación del fondo */
+@keyframes fondoAnimado {
+  from {
+    background: #000;
+    color: white;
+  }
+  to {
+    background: #ffe8d3;
+    color: #000;
+    
+  }
+}
+
+#sobre-mi {
   background-image: url("imagen_sobremi_fondo.png"); 
   background-size: cover;
   background-position: center;
@@ -97,12 +75,9 @@ footer {
   padding: 60px 0;
   text-align: justify;
 
-
 }
 
-
 #sobre-mi .container {
-  background-color: rgba(255, 255, 255, 0.95);
   background-color: rgba(255, 255, 255, 0.655); /* Blanco con transparencia */
   padding: 30px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -110,6 +85,11 @@ footer {
   margin: 0 auto;    
 }
 
+/*<td> están adentro de un <tr> */
+#sobre-mi table tr td {
+  padding: 20px;
+  border: none;
+} 
 
 #proyectos {
   background-image: url("imagen_proyectos_fondo.png"); 
@@ -117,6 +97,7 @@ footer {
   background-position: center;
   background-repeat: repeat;
   padding: 60px 0;
+  text-align: justify;
 }
 
 #proyectos .container {
@@ -147,55 +128,14 @@ footer {
 }
 
 
-  #estudios .container {
-    background-color: rgba(255, 255, 255, 0.792); /* Blanco con transparencia */
-    padding: 30px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    max-width: 920px; 
-    margin: 0 auto;  
-  }
-  
-  /*<td> están adentro de un <tr> */
-  #estudios table tr td {
-    padding: 20px;
-    border: none;
-  }  
-  
-  #estudios th {
-    border: none !important;
-  }
-  
-
-  /*<td> están adentro de un <tr> */
-  #sobre-mi table tr td {
-    padding: 20px;
-    border: none;
-  }  
-
-  #contacto {
-    background-image: url("imagen_contacto_fondo.png"); /* cambiá la ruta por la imagen real */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 60px 0;
-  }
- 
-  #contacto .container {
-    background-color: rgba(255, 255, 255, 0.792); /* Blanco con transparencia */
-    padding: 30px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    max-width: 920px;
-    margin: 0 auto;  
-  }
- 
 #estudios .container {
   background-color: rgba(255, 255, 255, 0.792); /* Blanco con transparencia */
   padding: 30px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  max-width: 920px;
+  max-width: 920px; 
   margin: 0 auto;  
 }
-
+  
 /*<td> están adentro de un <tr> */
 #estudios table tr td {
   padding: 20px;
@@ -205,18 +145,10 @@ footer {
 #estudios th {
   border: none !important;
 }
-
-
-
-/*<td> están adentro de un <tr> */
-#sobre-mi table tr td {
-  padding: 20px;
-  border: none;
-}  
-
+ 
 
 #contacto {
-  background-image: url("imagen_contacto_fondo.png"); 
+  background-image: url("imagen_contacto_fondo.png"); /* cambiá la ruta por la imagen real */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -230,9 +162,6 @@ footer {
   max-width: 920px;
   margin: 0 auto;  
 }
-
-
-
 #contacto table tr td {
   padding: 20px;
   border: none;
@@ -267,9 +196,30 @@ footer {
   font-weight: normal;
 }
 
+#estudios .container {
+  background-color: rgba(255, 255, 255, 0.792); /* Blanco con transparencia */
+  padding: 30px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  max-width: 920px;
+  margin: 0 auto;  
+}
+
+/*<td> están adentro de un <tr> */
+#estudios table tr td {
+  padding: 20px;
+  border: none;
+}  
+
+#estudios th {
+  border: none !important;
+}
+
+
 /* boton de traducir al ingles la pagina*/
 #idioma {
   background-color: #ffdab9dc;
+  color: #000;
+  font-size: 10px;
   padding: 2px;
   display: flex;
   justify-content: space-between;
@@ -282,8 +232,7 @@ footer {
 
 #idioma a {
   text-decoration: none;
-  color: #333333ea;
-  font-size: 10px;
+  color: #171717ea;
   margin: 0 10px;
   font-weight: bold;
   padding: 5px 8px; /* un poco más de espacio horizontal */
@@ -293,5 +242,71 @@ footer {
 
 #idioma a:hover {
   background-color: #ffdab9;
+}
+
+#curriculum a {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  padding: 0;     
+  margin: 0 10px;
+  font-weight: bold;
+  padding: 5px 8px; /* un poco más de espacio horizontal */
+  border-radius: 4px; /* bordes redondeados */
+  transition: background-color 0.3s;
+  font-size: 12px;
+}
+
+
+
+
+
+/* para que sea resposiva en tablet y celulares*/
+@media (max-width: 768px) {
+  nav, #idioma {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  nav a, #idioma a {
+    margin: 8px 0;
+  }
+
+  section {
+    padding: 40px 15px;
+  }
+
+  #inicio .container,
+  #sobre-mi .container,
+  #proyectos .container,
+  #estudios .container,
+  #contacto .container {
+    padding: 20px;
+    margin: 0 10px;
+    width: auto;
+  }
+
+  #proyectos table,
+  #estudios table,
+  #contacto table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+  }
+
+  #proyectos table tr,
+  #estudios table tr,
+  #contacto table tr {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  #proyectos table td,
+  #estudios table td,
+  #contacto table td {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
 }
 
