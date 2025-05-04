@@ -1,73 +1,143 @@
-<script type="module">
-  import * as THREE from "https://cdn.skypack.dev/three@0.135.0/build/three.module";
-  import { OrbitControls } from "https://cdn.skypack.dev/three@0.135.0/examples/jsm/controls/OrbitControls";
+const particleVertex = `
+  attribute float scale;
+	uniform float uTime;
 
-  const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector("#c"), alpha: true });
-  renderer.setClearColor(0x000000, 0); // Fondo transparente
+	void main() {
+		vec3 p = position;
+    float s = scale;
 
-  const camera = new THREE.PerspectiveCamera(75, 2, 0.01, 15);
-  camera.position.z = 1;
+    p.y += (sin(p.x + uTime) * 0.5) + (cos(p.y + uTime) * 0.1) * 2.0;
+    p.x += (sin(p.y + uTime) * 0.5);
+    s += (sin(p.x + uTime) * 0.5) + (cos(p.y + uTime) * 0.1) * 2.0;
 
-  const controls = new OrbitControls(camera, renderer.domElement);
-  const scene = new THREE.Scene();
+		vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
+		gl_PointSize = s * 15.0 * (1.0 / -mvPosition.z);
+		gl_Position = projectionMatrix * mvPosition;
+	}
+`;
 
-  const geometry = new THREE.PlaneGeometry(3, 2, 1000, 1000);
+const particleFragment = `
+	void main() {
+		gl_FragColor = vec4(1.0, 1.0, 1.0, 0.5);
+	}
+`;
 
-  // Esperar a que el DOM esté cargado antes de acceder a los shaders
-  document.addEventListener("DOMContentLoaded", function() {
-    const vertexShader = document.getElementById('vertexShader').textContent;
-    const fragmentShader = document.getElementById('fragmentShader').textContent;
+function lerp(start, end, amount) {
+	return (1 - amount) * start + amount * end;
+};
 
-    const material = new THREE.ShaderMaterial({
-      uniforms: {
-        time: { value: 1.0 },
-        uColor: {
-          value: [
-            new THREE.Color(0xff9911),
-            new THREE.Color(0xff6600),
-            new THREE.Color(0xfb4f4f),
-            new THREE.Color(0xfc6791),
-            new THREE.Color(0xfc99c3),
-          ]
-        },
-      },
-      vertexShader: vertexShader,
-      fragmentShader: fragmentShader
-    });
+class Canvas {
+	constructor() {
+		this.config = {
+			canvas: document.querySelector('#c'),
+			winWidth: window.innerWidth,
+			winHeight: window.innerHeight,
+			aspectRatio: window.innerWidth / window.innerHeight,
+			mouse: new THREE.Vector2(-10, -10)
+		};
 
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-  });
+		this.onResize = this.onResize.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
+		this.animate = this.animate.bind(this);
 
-  function resizeRendererToDisplaySize(renderer) {
-    const canvas = renderer.domElement;
-    const pixelRatio = window.devicePixelRatio;
-    const width = (canvas.clientWidth * pixelRatio) | 0;
-    const height = (canvas.clientHeight * pixelRatio) | 0;
-    const needResize = canvas.width !== width || canvas.height !== height;
-    if (needResize) {
-      renderer.setSize(width, height, false);
+		this.initCamera();
+		this.initScene();
+		this.initRenderer();
+
+		this.initParticles();
+
+		this.bindEvents();
+		this.animate();
+	}
+
+	bindEvents() {
+		window.addEventListener('resize', this.onResize);
+		window.addEventListener('mousemove', this.onMouseMove, false);
+	}
+
+	initCamera() {
+		this.camera = new THREE.PerspectiveCamera(75, this.config.aspectRatio, 0.01, 1000);
+		this.camera.position.set(0, 6, 5);
+	}
+
+	initControls() {
+		this.controls = new OrbitControls(this.camera, this.config.canvas);
+	}
+
+	initScene() {
+		this.scene = new THREE.Scene();
+	}
+
+	initRenderer() {
+		this.renderer = new THREE.WebGLRenderer({
+			canvas: this.config.canvas,
+			antialias: true,
+      // alpha: true
+		});
+		this.renderer.setPixelRatio(window.devicePixelRatio);
+		this.renderer.setSize(this.config.winWidth, this.config.winHeight);
+	}
+
+	initParticles() {
+    const gap = 0.3;
+    const amountX = 200;
+    const amountY = 200;
+    const particleNum = amountX * amountY;
+		const particlePositions = new Float32Array(particleNum * 3);
+    const particleScales = new Float32Array(particleNum);
+    let i = 0;
+    let j = 0;
+
+    for (let ix = 0; ix < amountX; ix++) {
+      for (let iy = 0; iy < amountY; iy++) {
+        particlePositions[i] = ix * gap - ((amountX * gap) / 2);
+        particlePositions[i + 1] = 0;
+        particlePositions[i + 2] = iy * gap - ((amountX * gap) / 2);
+        particleScales[j] = 1;
+        i += 3;
+        j++;
+      }
     }
-    return needResize;
-  }
 
-  let then = 0;
-  function render(now) {
-    now *= 0.001;
-    const deltaTime = now - then;
-    then = now;
+		this.particleGeometry = new THREE.BufferGeometry();
+		this.particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+    this.particleGeometry.setAttribute('scale', new THREE.BufferAttribute(particleScales, 1));
 
-    if (resizeRendererToDisplaySize(renderer)) {
-      const canvas = renderer.domElement;
-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      camera.updateProjectionMatrix();
-    }
+		this.particleMaterial = new THREE.ShaderMaterial({
+			transparent: true,
+			vertexShader: particleVertex,
+			fragmentShader: particleFragment,
+			uniforms: {
+				uTime: { type: 'f', value: 0 }
+			}
+		});
+		this.particles = new THREE.Points(this.particleGeometry, this.particleMaterial);
+		this.scene.add(this.particles);
+	}
 
-    controls.update();
-    renderer.render(scene, camera);
-    requestAnimationFrame(render);
-  }
+	render() {
+		this.camera.lookAt(this.scene.position);
+		this.renderer.render(this.scene, this.camera);
+	}
 
-  requestAnimationFrame(render);
-</script>
+	animate() {
+		this.particleMaterial.uniforms.uTime.value += 0.05;
+		requestAnimationFrame(this.animate);
+		this.render();
+	}
 
+	onMouseMove(e) {
+		this.config.mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+		this.config.mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+	}
+
+	onResize() {
+		this.config.winWidth = window.innerWidth;
+		this.config.winHeight = window.innerHeight;
+		this.camera.aspect = this.config.winWidth / this.config.winHeight;
+		this.camera.updateProjectionMatrix();
+		this.renderer.setSize(this.config.winWidth, this.config.winHeight);
+	}
+}
+
+new Canvas();

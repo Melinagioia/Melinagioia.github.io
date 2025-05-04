@@ -38,15 +38,25 @@ footer {
   padding: 15px;
 }
 #inicio {
-  background-image: url("imagen_fondo_inicio.png"); 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 60px 0;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+#c {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 #inicio .container {
+  position: relative;
+  z-index: 1; /* Esto pone el texto arriba del canvas */
   animation: fondoAnimado 5s infinite alternate;
-  background: #ffdab9; /* Color inicial animado */
+  background: #fadabee6; /* Color inicial animado */
   padding: 30px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   max-width: 920px;
@@ -54,18 +64,18 @@ footer {
 
 }
 
-/* Animación del fondo */
+/*
 @keyframes fondoAnimado {
   from {
-    background: #000;
-    color: white;
-  }
-  to {
-    background: #ffe8d3;
-    color: #000;
+    background: #ffdab9e0;
     
   }
-}
+  to {
+    background: #ffe8d3ec;
+    
+    
+  }
+} */
 
 #sobre-mi {
   background-image: url("imagen_sobremi_fondo.png"); 
@@ -309,4 +319,11 @@ footer {
     text-align: center;
   }
 }
+
+/**/
+/**/
+/*EJEMPLO*/
+/**/
+
+
 
