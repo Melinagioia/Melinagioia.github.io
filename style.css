@@ -118,7 +118,7 @@ footer {
 /* Zoom ligero al pasar el mouse */
 
 #contacto .contact-link img:hover {
-  transform: scale(2.1);
+  transform: scale(1.5);
   transition: transform 0.2s;
 }
 
