@@ -1,12 +1,25 @@
-body {
-  font-family: Arial, sans-serif !important ;
+/* Reset y background animado global */
+html, body {
+  height: 100%;
   margin: 0;
+  font-family: Arial, sans-serif;
   scroll-behavior: smooth;
+  position: relative;
+  overflow-x: hidden; /* Solo horizontal */
+  user-select: none;
 }
 
+#c {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
 
+/* Navegación */
 nav {
-  background-color: #ffdab9;
+  background-color: #bebebe;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -14,316 +27,186 @@ nav {
   top: 0;
   z-index: 1000;
 }
-
-
 nav a {
   text-decoration: none;
-  color: #333;
+  color: #000000;
   margin: 0 15px;
   font-weight: bold;
 }
 
-
+/* Secciones generales */
 section {
+  position: relative;
+  z-index: 1;
   padding: 60px 20px;
   min-height: 100vh;
-  border-bottom: 1px solid #ddd;
+  background-image: url(/imagen_argentina.webp);
+  background-size: 5%;
+  background-position: 95% 15%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-
+/* Footer */
 footer {
+  position: relative;
+  z-index: 1;
   background-color: #333;
   color: white;
   text-align: center;
   padding: 15px;
 }
-#inicio {
-  margin: 0;
-  overflow: hidden;
-  position: relative;
-  min-height: 100vh;
-}
 
-#c {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-#inicio .container {
+/* Contenedores de sección */
+.container {
   position: relative;
-  z-index: 1; /* Esto pone el texto arriba del canvas */
-  animation: fondoAnimado 5s infinite alternate;
-  background: #fadabee6; /* Color inicial animado */
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.856);
   padding: 30px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   max-width: 920px;
   margin: 0 auto;
-
-}
-
-/*
-@keyframes fondoAnimado {
-  from {
-    background: #ffdab9e0;
-    
-  }
-  to {
-    background: #ffe8d3ec;
-    
-    
-  }
-} */
-
-#sobre-mi {
-  background-image: url("imagen_sobremi_fondo.png"); 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 60px 0;
-  text-align: justify;
-
-}
-
-#sobre-mi .container {
-  background-color: rgba(255, 255, 255, 0.655); /* Blanco con transparencia */
-  padding: 30px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  max-width: 920px;
-  margin: 0 auto;    
+  color: #000;
 }
 
-/*<td> están adentro de un <tr> */
-#sobre-mi table tr td {
-  padding: 20px;
-  border: none;
-} 
-
-#proyectos {
-  background-image: url("imagen_proyectos_fondo.png"); 
-  background-size: 26%;
-  background-position: center;
-  background-repeat: repeat;
-  padding: 60px 0;
-  text-align: justify;
+/* Contenedor de todos los enlaces de contacto en fila */
+#contacto td .contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
-#proyectos .container {
-  background-color: rgba(255, 255, 255, 0.792); /* Blanco con transparencia */
-  padding: 30px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  max-width: 920px;
-  margin: 0 auto;  
-}
-
-/*<td> están adentro de un <tr> */
-#proyectos table tr td {
-  padding: 20px;
-  border: none;
-}  
-
-#proyectos th {
-  border: none !important;
-}
-
-#estudios {
-  background-image: url("imagen_sobremi_fondo.png"); 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 60px 0;
-  text-align: justify;
-}
-
-
-#estudios .container {
-  background-color: rgba(255, 255, 255, 0.792); /* Blanco con transparencia */
-  padding: 30px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  max-width: 920px; 
-  margin: 0 auto;  
-}
-  
-/*<td> están adentro de un <tr> */
-#estudios table tr td {
-  padding: 20px;
-  border: none;
-}  
-
-#estudios th {
-  border: none !important;
-}
- 
-
-#contacto {
-  background-image: url("imagen_contacto_fondo.png"); /* cambiá la ruta por la imagen real */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 60px 0;
-}
-
-#contacto .container {
-  background-color: rgba(255, 255, 255, 0.792); /* Blanco con transparencia */
-  padding: 30px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  max-width: 920px;
-  margin: 0 auto;  
-}
-#contacto table tr td {
-  padding: 20px;
-  border: none;
-}  
-
-#contacto th {
-  border: none !important;
-
-
-}
-#contacto td a svg {
-  display: block;      
-  margin: 19px auto;    
-  fill: #000000;        
-  width: 42px;          
-  height: 42px;
-}
-
-#contacto td {
-  text-align: center;  
-  vertical-align: middle;
-}
-
-#contacto td a {
+/* Cada enlace en columna, centrado */
+#contacto .contact-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
-  color: #000;  
-  margin: 25px auto;
+  color: #000;
+  cursor: pointer;
 }
 
-#contacto td a h5 {
-  margin-top: 8px;
-  font-weight: normal;
+/* Tamaño fijo para los SVG */
+#contacto .contact-link svg {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 8px;
 }
 
-#estudios .container {
-  background-color: rgba(255, 255, 255, 0.792); /* Blanco con transparencia */
-  padding: 30px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  max-width: 920px;
-  margin: 0 auto;  
+/* Tamaño fijo para los iconos .ico */
+.icon-img {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 8px;
 }
 
-/*<td> están adentro de un <tr> */
-#estudios table tr td {
+/* Tamaño fijo para los GIF */
+.icon-gif {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+/* Nombre debajo */
+#contacto .contact-link h5 {
+  margin: 0;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Zoom ligero al pasar el mouse */
+
+#contacto .contact-link img:hover {
+  transform: scale(2.1);
+  transition: transform 0.2s;
+}
+
+
+
+
+
+
+
+/* Tablas sin bordes */
+section table tr td {
   padding: 20px;
   border: none;
-}  
-
-#estudios th {
+}
+section table th {
   border: none !important;
 }
 
-
-/* boton de traducir al ingles la pagina*/
+/* Traducción e idioma */
 #idioma {
-  background-color: #ffdab9dc;
+  background-color: #bebebedc;
   color: #000;
   font-size: 10px;
-  padding: 2px;
+  padding: 5px 20px;
   display: flex;
   justify-content: space-between;
-  top: 0;
-  z-index: 1000;
-  width: 100% ;
+  width: 100%;
   box-sizing: border-box;
-  padding: 5px 20px;
 }
-
 #idioma a {
   text-decoration: none;
   color: #171717ea;
   margin: 0 10px;
   font-weight: bold;
-  padding: 5px 8px; /* un poco más de espacio horizontal */
-  border-radius: 4px; /* bordes redondeados */
-  transition: background-color 0.3s; /* transición suave */
+  padding: 5px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
-
 #idioma a:hover {
   background-color: #ffdab9;
 }
 
+/* Curriculum */
 #curriculum a {
-  font-family: Arial, sans-serif;
+  text-decoration: none;
+  color: #000;
   font-weight: bold;
-  padding: 0;     
-  margin: 0 10px;
-  font-weight: bold;
-  padding: 5px 8px; /* un poco más de espacio horizontal */
-  border-radius: 4px; /* bordes redondeados */
-  transition: background-color 0.3s;
   font-size: 12px;
+  margin: 0 10px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 
 
-
-
-/* para que sea resposiva en tablet y celulares*/
+/* Responsive */
 @media (max-width: 768px) {
   nav, #idioma {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-
   nav a, #idioma a {
     margin: 8px 0;
   }
-
   section {
     padding: 40px 15px;
   }
-
-  #inicio .container,
-  #sobre-mi .container,
-  #proyectos .container,
-  #estudios .container,
-  #contacto .container {
+  .container {
     padding: 20px;
     margin: 0 10px;
     width: auto;
   }
-
-  #proyectos table,
-  #estudios table,
-  #contacto table {
+  section table,
+  section table tr {
+    display: block;
     width: 100%;
-    display: block;
     overflow-x: auto;
-  }
-
-  #proyectos table tr,
-  #estudios table tr,
-  #contacto table tr {
-    display: block;
     margin-bottom: 20px;
   }
-
-  #proyectos table td,
-  #estudios table td,
-  #contacto table td {
+  section table td {
     display: block;
     width: 100%;
     text-align: center;
   }
 }
 
-/**/
-/**/
-/*EJEMPLO*/
-/**/
 
 
 
